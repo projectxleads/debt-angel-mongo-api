@@ -1,12 +1,12 @@
-import "reflect-metadata";
 import bodyParser from "body-parser";
+import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import mongoose from "mongoose";
 import helmet from "helmet";
-import cors from "cors";
+import mongoose from "mongoose";
+import "reflect-metadata";
 
-import apiRoutes from './presentation/middlewares/api.middleware';
+import apiRoutes from "./presentation/middlewares/api.middleware";
 
 // Set Environment variables
 dotenv.config();
@@ -25,10 +25,10 @@ mongoose.connect(mongoConnectionString)
 
     // Enable cross-origin Requests
     app.use(cors());
-   
+
     // Help us to secure our application by setting various HTTP headers
-     app.use(helmet());
-   
+    app.use(helmet());
+
     // Parses the client's request from json into javascript objects
     app.use(bodyParser.json());
 
@@ -37,9 +37,9 @@ mongoose.connect(mongoConnectionString)
       res.send("Hello world");
     });
 
-    app.use('/api', apiRoutes);
+    app.use("/api", apiRoutes);
 
     app.listen(port, () => {
       console.log(`Server start at http://localhost:${port}`);
     });
-  }).catch(err => console.log(err));
+  }).catch((err) => console.log(err));
