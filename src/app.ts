@@ -12,9 +12,9 @@ import apiRoutes from "./presentation/middlewares/api.middleware";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-const mongoConnectionString = process.env.MONGODB_CONNECTION_STRING as string;
+const mongoConnectionString = process.env.MONGODB_CONNECTION_STRING as string || "mongodb://localhost/debt-angels";
 
-mongoose.connect(mongoConnectionString)
+mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex: true })
   .then(async (result) => {
     console.log("Connected to mongo db");
 

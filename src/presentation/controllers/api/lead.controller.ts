@@ -1,17 +1,16 @@
 import { Request, Response } from "express";
-import LeadLogic from '../../../application/logics/lead/lead.logic';
+import LeadLogic from "../../../application/logics/lead/lead.logic";
 
 const logic = new LeadLogic();
 
 class LeadController {
   public getLead(req: Request, res: Response) {
-    logic.getLeads().then(result => {
+    logic.getLeads().then((result) => {
       res.send(result);
-    }).catch(err => {
+    }).catch((err) => {
       console.log(err);
       res.sendStatus(500);
-    })
-
+    });
   }
 
   public getLeadById(req: Request, res: Response) {
@@ -19,9 +18,9 @@ class LeadController {
   }
 
   public addLead(req: Request, res: Response) {
-    logic.addLead(req.body).then(result => {
+    logic.addLead(req.body).then((result) => {
       res.status(201).location(req.url).send(result);
-    }).catch(err => {
+    }).catch((err) => {
       console.log(err);
       res.sendStatus(500);
     });

@@ -1,10 +1,19 @@
-version: '2.1'
-
+version: '3'
 services:
-  debt-angel-api:
-    image: debt-angel-api
+  api:
+    image: sample-express-app
     build: .
-    environment:
-      NODE_ENV: production
+    networks:
+      - backend
     ports:
-      - 3000:3000
+      - "3000:3000"
+
+  web-cli:
+    image: sample-express-app
+    networks:
+      - backend
+    command: sh
+
+networks:
+  backend:
+    driver: bridge

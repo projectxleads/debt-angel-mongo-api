@@ -1,5 +1,5 @@
-import LeadDto from '../../models/dtos/lead.dto';
-import Lead from '../../../domain/lead/lead.model';
+import LeadDto from "../../models/dtos/lead.dto";
+import Lead from "../../../domain/lead/lead.model";
 
 class LeadLogic {
   public getLeads(): Promise<LeadDto[]> {
@@ -16,7 +16,7 @@ class LeadLogic {
       email: leadDto.email,
       alternativePhoneNumber: leadDto.alternativePhoneNumber,
       communication: leadDto.communication
-    })
+    });
     return lead.save();
   }
 }
