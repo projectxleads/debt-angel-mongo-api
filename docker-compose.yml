@@ -1,7 +1,7 @@
 version: '3'
 services:
   api:
-    image: sample-express-app
+    image: debt-angel-api
     build: .
     networks:
       - backend
@@ -9,10 +9,15 @@ services:
       - "3000:3000"
 
   web-cli:
-    image: sample-express-app
+    image: debt-angel-api
     networks:
       - backend
     command: sh
+
+  mongo:
+    image: mongo
+    ports:
+      - "27018:27017"
 
 networks:
   backend:
