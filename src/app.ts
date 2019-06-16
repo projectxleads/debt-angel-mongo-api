@@ -13,9 +13,11 @@ import mongodbConf from "./infrastructure/db/mongodb/mongodb.conf";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-// const mongoConnectionString = process.env.MONGODB_CONNECTION_STRING as string || "mongodb://localhost/debt-angels";
+const mongoConnectionString = process.env.CUSTOMCONNSTR_MyConnectionString as string || mongodbConf.db;
 
-mongoose.connect(mongodbConf.db, { useNewUrlParser: true, useCreateIndex: true })
+console.log("DB", mongodbConf.db);
+
+mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex: true })
   .then(async (result) => {
     console.log("Connected to mongo db");
 
