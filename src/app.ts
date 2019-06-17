@@ -13,7 +13,7 @@ import mongodbConf from "./infrastructure/db/mongodb/mongodb.conf";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-const mongoConnectionString = process.env.MyConnectionString as string || mongodbConf.db;
+const mongoConnectionString = process.env.CUSTOMCONNSTR_MyConnectionString as string || mongodbConf.db;
 let mongoStatus;
 
 console.log("DB", mongodbConf.db);
