@@ -13,10 +13,11 @@ import mongodbConf from "./infrastructure/db/mongodb/mongodb.conf";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-const mongoConnectionString = process.env.APPSETTING_MyConnectionString as string || mongodbConf.db;
+const mongoConnectionString =  mongodbConf.remoteUrl as string || mongodbConf.db;
 let mongoStatus: any;
 
-console.log("DB", mongodbConf.db);
+console.log("Connect str", mongoConnectionString);
+console.log("connect str env", process.env.APPSETTING_MyConnectionString);
 
 mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex: true })
   .then(async (result) => {
