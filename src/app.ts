@@ -14,7 +14,7 @@ dotenv.config();
 
 const port = process.env.PORT || 3000;
 const mongoConnectionString = process.env.APPSETTING_MyConnectionString as string || mongodbConf.db;
-let mongoStatus;
+let mongoStatus: any;
 
 console.log("DB", mongodbConf.db);
 
@@ -24,11 +24,6 @@ mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex:
   }).catch((err) => {
     console.log(err);
     mongoStatus = err;
-  })
-  .finally(() => {
-    app.get("/mongo-status", (req, res) => {
-      res.send();
-    });
   });
 
 console.log("Connected to mongo db");
@@ -58,6 +53,10 @@ app.get("/env", (req, res) => {
 
 app.get("/connect-str", (req, res) => {
   res.send(mongoConnectionString);
+});
+
+app.get("/mongo-satus", (req, res) => {
+  res.send(mongoStatus);
 });
 
 app.use("/api", apiRoutes);
