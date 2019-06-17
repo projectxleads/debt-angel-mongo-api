@@ -19,30 +19,57 @@ console.log("DB", mongodbConf.db);
 
 mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex: true })
   .then(async (result) => {
-    console.log("Connected to mongo db");
+    // console.log("Connected to mongo db");
 
-    // Create a new express application instance
-    const app = express();
+    // // Create a new express application instance
+    // const app = express();
 
-    // Call middleawares
+    // // Call middleawares
 
-    // Enable cross-origin Requests
-    app.use(cors());
+    // // Enable cross-origin Requests
+    // app.use(cors());
 
-    // Help us to secure our application by setting various HTTP headers
-    app.use(helmet());
+    // // Help us to secure our application by setting various HTTP headers
+    // app.use(helmet());
 
-    // Parses the client's request from json into javascript objects
-    app.use(bodyParser.json());
+    // // Parses the client's request from json into javascript objects
+    // app.use(bodyParser.json());
 
-    // Set all routes
-    app.get("/", (req, res) => {
-      res.send("Hello world");
-    });
+    // // Set all routes
+    // app.get("/", (req, res) => {
+    //   res.send("Hello world");
+    // });
 
-    app.use("/api", apiRoutes);
+    // app.use("/api", apiRoutes);
 
-    app.listen(port, () => {
-      console.log(`Server start at http://localhost:${port}`);
-    });
+    // app.listen(port, () => {
+    //   console.log(`Server start at http://localhost:${port}`);
+    // });
   }).catch((err) => console.log(err));
+
+console.log("Connected to mongo db");
+
+// Create a new express application instance
+const app = express();
+
+// Call middleawares
+
+// Enable cross-origin Requests
+app.use(cors());
+
+// Help us to secure our application by setting various HTTP headers
+app.use(helmet());
+
+// Parses the client's request from json into javascript objects
+app.use(bodyParser.json());
+
+// Set all routes
+app.get("/", (req, res) => {
+  res.send("Hello world");
+});
+
+app.use("/api", apiRoutes);
+
+app.listen(port, () => {
+  console.log(`Server start at http://localhost:${port}`);
+});
