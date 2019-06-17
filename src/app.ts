@@ -14,12 +14,20 @@ dotenv.config();
 
 const port = process.env.PORT || 3000;
 const mongoConnectionString = process.env.MyConnectionString as string || mongodbConf.db;
+let mongoStatus;
 
 console.log("DB", mongodbConf.db);
 
 mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex: true })
   .then(async (result) => {
-    // console.log("Connected to mongo db");
+    mongoStatus = result;
+  }).catch((err) => {
+    console.log(err);
+    mongoStatus = err;
+  })
+  .finally(() => {
+    console.log(`Server start at http://localhost:${port}`);
+    console.log("Connected to mongo db");
 
     // Create a new express application instance
     const app = express();
@@ -37,7 +45,19 @@ mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex:
 
     // Set all routes
     app.get("/", (req, res) => {
+      res.send("Hello world");
+    });
+
+    app.get("/env", (req, res) => {
       res.send(process.env);
+    });
+
+    app.get("/connect-str", (req, res) => {
+      res.send(mongoConnectionString);
+    });
+
+    app.get("/mongo-status", (req, res) => {
+      res.send();
     });
 
     app.use("/api", apiRoutes);
@@ -45,7 +65,7 @@ mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex:
     app.listen(port, () => {
       console.log(`Server start at http://localhost:${port}`);
     });
-  }).catch((err) => console.log(err));
+  });
 
 // console.log("Connected to mongo db");
 
