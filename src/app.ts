@@ -65,7 +65,7 @@ app.use(bodyParser.json());
 
 // Set all routes
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.send(process.env);
 });
 
 app.use("/api", apiRoutes);
