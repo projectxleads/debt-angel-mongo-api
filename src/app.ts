@@ -26,70 +26,42 @@ mongoose.connect(mongoConnectionString, { useNewUrlParser: true, useCreateIndex:
     mongoStatus = err;
   })
   .finally(() => {
-    console.log(`Server start at http://localhost:${port}`);
-    console.log("Connected to mongo db");
-
-    // Create a new express application instance
-    const app = express();
-
-    // Call middleawares
-
-    // Enable cross-origin Requests
-    app.use(cors());
-
-    // Help us to secure our application by setting various HTTP headers
-    app.use(helmet());
-
-    // Parses the client's request from json into javascript objects
-    app.use(bodyParser.json());
-
-    // Set all routes
-    app.get("/", (req, res) => {
-      res.send("Hello world");
-    });
-
-    app.get("/env", (req, res) => {
-      res.send(process.env);
-    });
-
-    app.get("/connect-str", (req, res) => {
-      res.send(mongoConnectionString);
-    });
-
     app.get("/mongo-status", (req, res) => {
       res.send();
     });
-
-    app.use("/api", apiRoutes);
-
-    app.listen(port, () => {
-      console.log(`Server start at http://localhost:${port}`);
-    });
   });
 
-// console.log("Connected to mongo db");
+console.log("Connected to mongo db");
 
-// // Create a new express application instance
-// const app = express();
+// Create a new express application instance
+const app = express();
 
-// // Call middleawares
+// Call middleawares
 
-// // Enable cross-origin Requests
-// app.use(cors());
+// Enable cross-origin Requests
+app.use(cors());
 
-// // Help us to secure our application by setting various HTTP headers
-// app.use(helmet());
+// Help us to secure our application by setting various HTTP headers
+app.use(helmet());
 
-// // Parses the client's request from json into javascript objects
-// app.use(bodyParser.json());
+// Parses the client's request from json into javascript objects
+app.use(bodyParser.json());
 
-// // Set all routes
-// app.get("/", (req, res) => {
-//   res.send(process.env);
-// });
+// Set all routes
+app.get("/", (req, res) => {
+  res.send("Hello world");
+});
 
-// app.use("/api", apiRoutes);
+app.get("/env", (req, res) => {
+  res.send(process.env);
+});
 
-// app.listen(port, () => {
-//   console.log(`Server start at http://localhost:${port}`);
-// });
+app.get("/connect-str", (req, res) => {
+  res.send(mongoConnectionString);
+});
+
+app.use("/api", apiRoutes);
+
+app.listen(port, () => {
+  console.log(`Server start at http://localhost:${port}`);
+});
