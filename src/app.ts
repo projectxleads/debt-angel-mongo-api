@@ -20,7 +20,8 @@ console.log("Connect str", mongoConnectionString);
 console.log("connect str env", process.env.APPSETTING_MyConnectionString);
 
 // tslint:disable-next-line:max-line-length
-mongoose.connect("mongodb://debt-angels-db:gzNuLZypXolw7ZVZvFVnQujEF3AfEokxLOuLc8AEFf42OFUuuXoozHIDxGVuSz5MNFtjK0EoMuotsIG3Vu62FA==@debt-angels-db.documents.azure.com:10255/?ssl=true&replicaSet=globaldb")
+mongoose.connect("mongodb://debt-angels-db:gzNuLZypXolw7ZVZvFVnQujEF3AfEokxLOuLc8AEFf42OFUuuXoozHIDxGVuSz5MNFtjK0EoMuotsIG3Vu62FA==@debt-angels-db.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
+  , { useNewUrlParser: true, useCreateIndex: true , useMongoClient: true })
   .then(async (result) => {
     mongoStatus = result;
   }).catch((err) => {
