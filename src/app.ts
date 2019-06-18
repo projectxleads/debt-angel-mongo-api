@@ -13,15 +13,20 @@ import mongodbConf from "./infrastructure/db/mongodb/mongodb.conf";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-const mongoConnectionString = mongodbConf.remoteUrl as string || mongodbConf.db;
+const mongoConnectionString = process.env.APPSETTING_MyConnectionString ||
+  mongodbConf.remoteUrl as string ||
+  mongodbConf.db;
+
 let mongoStatus: any;
 
 console.log("Connect str", mongoConnectionString);
 console.log("connect str env", process.env.APPSETTING_MyConnectionString);
+console.log("Remote url", mongodbConf.remoteUrl);
+console.log("DB", mongodbConf.db);
 
 // tslint:disable-next-line:max-line-length
-mongoose.connect("mongodb://debt-angels-db:gzNuLZypXolw7ZVZvFVnQujEF3AfEokxLOuLc8AEFf42OFUuuXoozHIDxGVuSz5MNFtjK0EoMuotsIG3Vu62FA==@debt-angels-db.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
-  , { useNewUrlParser: true, useCreateIndex: true , useMongoClient: true })
+mongoose.connect(mongoConnectionString
+  , { useNewUrlParser: true, useCreateIndex: true, useMongoClient: true })
   .then(async (result) => {
     mongoStatus = result;
   }).catch((err) => {
