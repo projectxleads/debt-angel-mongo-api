@@ -26,7 +26,7 @@ console.log("DB", mongodbConf.db);
 
 // tslint:disable-next-line:max-line-length
 mongoose.connect(mongoConnectionString
-  , { useNewUrlParser: true, useCreateIndex: true, useMongoClient: true })
+  , { useMongoClient: true })
   .then(async (result) => {
     mongoStatus = result;
   }).catch((err) => {
