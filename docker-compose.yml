@@ -20,7 +20,7 @@
 version: '3'
 services:
   api:
-    image: debt-angel-api
+    image: mickeymuis007/debt-angel-api
     build: .
     networks:
       - backend
@@ -28,11 +28,11 @@ services:
       - "3000:3000"
 
   web-cli:
-    image: debt-angel-api
+    image: mickeymuis007/debt-angel-api
     networks:
       - backend
     command: sh
-    
+
 networks:
   backend:
     driver: bridge

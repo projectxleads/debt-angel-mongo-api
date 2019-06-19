@@ -13,8 +13,8 @@ import mongodbConf from "./infrastructure/db/mongodb/mongodb.conf";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
-const mongoConnectionString = process.env.APPSETTING_MyConnectionString ||
-  mongodbConf.remoteUrl as string ||
+const mongoConnectionString = mongodbConf.remoteUrl as string ||
+  process.env.APPSETTING_MyConnectionString ||
   mongodbConf.db;
 // tslint:disable-next-line:max-line-length
 // const mongoConnectionString = "mongodb://debtangelsdb:EOZfSWfJchyT5jA98HyF7stggnD9yvXd54NOHPWpXyxPI6e0M2Lon4IB4m3EWsKgQtAvYyudioHRXpG80wzWEw==@debtangelsdb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
