@@ -32,12 +32,7 @@ services:
     networks:
       - backend
     command: sh
-
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-
+    
 networks:
   backend:
     driver: bridge
