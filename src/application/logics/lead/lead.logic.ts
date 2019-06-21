@@ -15,7 +15,8 @@ class LeadLogic {
       phoneNumber: leadDto.phoneNumber,
       email: leadDto.email,
       alternativePhoneNumber: leadDto.alternativePhoneNumber,
-      communication: leadDto.communication
+      communication: leadDto.communication,
+      termsAndCondition: leadDto.termsAndCondition
     });
     return lead.save();
   }

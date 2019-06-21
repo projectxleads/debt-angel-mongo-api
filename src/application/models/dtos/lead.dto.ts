@@ -6,6 +6,7 @@ interface ILeadDto {
   phoneNumber: string;
   alternativePhoneNumber: string;
   communication: string;
+  termsAndCondition: boolean;
 }
 
 export default ILeadDto;

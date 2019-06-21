@@ -6,9 +6,10 @@ const leadSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   phoneNumber: { type: String, required: true },
-  alternativePhoneNumber: { type: String, required: true },
+  alternativePhoneNumber: { type: String },
   email: { type: String, required: true, unique: true },
-  communication: String
+  communication: String,
+  termsAndCondition: Boolean
 });
 
 export default mongoose.model("Lead", leadSchema);
