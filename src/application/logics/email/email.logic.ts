@@ -15,7 +15,7 @@ export class EmailLogic {
         api_key: process.env.SENDGRID_API_KEY
       }
     }));
-    
+
     return transporter.sendMail(msg).then((result: any) => {
       console.log("******Successful Send Mail******");
       console.log(result);
