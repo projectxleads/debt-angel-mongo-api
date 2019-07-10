@@ -9,7 +9,9 @@ const leadSchema = new Schema({
   alternativePhoneNumber: { type: String },
   email: { type: String, required: true, unique: true },
   communication: String,
-  termsAndCondition: Boolean
+  termsAndCondition: Boolean,
+  createdDate: Date,
+  updatedDate: Date
 });
 
 export default mongoose.model("Lead", leadSchema);
