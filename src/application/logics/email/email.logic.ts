@@ -1,12 +1,6 @@
 const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 
-const transporter = nodemailer.createTransport(sendgridTransport({
-  auth: {
-    api_key: "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"
-  }
-}));
-
 export class EmailLogic {
   public sendEmail(to: string, from: string, subject: string, html: string) {
     const msg = {
@@ -15,6 +9,13 @@ export class EmailLogic {
       subject,
       html
     };
+
+    const transporter = nodemailer.createTransport(sendgridTransport({
+      auth: {
+        api_key: process.env.SENDGRID_API_KEY
+      }
+    }));
+    
     return transporter.sendMail(msg).then((result: any) => {
       console.log("******Successful Send Mail******");
       console.log(result);
