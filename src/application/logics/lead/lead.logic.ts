@@ -27,22 +27,22 @@ class LeadLogic {
       createdDate: new Date(),
       updatedDate: new Date()
     });
-    return lead.save().then((lead: any) => {
+    return lead.save().then((result: any) => {
       const html =
         `<h1>Lead Added:</h1>
-      <p>First Name: ${lead.firstName}</p>
-      <p>Last Name: ${lead.lastName}</p>
-      <p>Phone Number: ${lead.phoneNumber}</p>
-      <p>Email: ${lead.email}</p>
-      <p>Alternative Phone Numnber: ${lead.alternativePhoneNumber}</p>
-      <p>Communication Type: ${lead.communication}</p>
-      <p>Terms and Condition: ${lead.termsAndCondition}</p>
-      <p>Updated Date: ${lead.updatedDate}</p>
-      <p>Created Date: ${lead.createdDate}</p>
-      `
+      <p>First Name: ${result.firstName}</p>
+      <p>Last Name: ${result.lastName}</p>
+      <p>Phone Number: ${result.phoneNumber}</p>
+      <p>Email: ${result.email}</p>
+      <p>Alternative Phone Numnber: ${result.alternativePhoneNumber}</p>
+      <p>Communication Type: ${result.communication}</p>
+      <p>Terms and Condition: ${result.termsAndCondition}</p>
+      <p>Updated Date: ${result.updatedDate}</p>
+      <p>Created Date: ${result.createdDate}</p>
+      `;
       this.emailLogic.sendEmail("mihendricks1@gmail.com", "info@debtangels.co.za",
-        `New Lead: ${lead.firstName} ${lead.lastName}`, html);
-      return lead;
+        `New Lead: ${result.firstName} ${result.lastName}`, html);
+      return result;
     });
   }
 }
