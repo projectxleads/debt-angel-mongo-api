@@ -43,7 +43,7 @@ class LeadLogic {
       <p>Updated Date: ${result.updatedDate}</p>
       <p>Created Date: ${result.createdDate}</p>
       `;
-      this.emailLogic.sendEmail("mihendricks1@gmail.com", "info@debtangels.co.za",
+      this.emailLogic.sendEmail("salesourcect@gmail.com", "info@debtangels.co.za",
         `New Lead: ${result.firstName} ${result.lastName}`, html);
       return result;
     });
