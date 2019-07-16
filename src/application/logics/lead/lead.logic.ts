@@ -1,13 +1,16 @@
 import LeadDto from "../../models/dtos/lead.dto";
 import Lead from "../../../domain/lead/lead.model";
 import { EmailLogic } from "../email/email.logic";
+import { GmailLogic } from "../email/gmail.logic";
 import { stringify } from "querystring";
 
 class LeadLogic {
   private emailLogic: EmailLogic;
+  private gmailLogic: GmailLogic;
 
   constructor() {
     this.emailLogic = new EmailLogic();
+    this.gmailLogic = new GmailLogic();
   }
   public getLeads(): Promise<LeadDto[]> {
     return Lead.find().then((leads: any) => {
@@ -40,7 +43,7 @@ class LeadLogic {
       <p>Updated Date: ${result.updatedDate}</p>
       <p>Created Date: ${result.createdDate}</p>
       `;
-      this.emailLogic.sendEmail("salesourcect@gmail.com", "info@debtangels.co.za",
+      this.emailLogic.sendEmail("mihendricks1@gmail.com", "info@debtangels.co.za",
         `New Lead: ${result.firstName} ${result.lastName}`, html);
       return result;
     });
